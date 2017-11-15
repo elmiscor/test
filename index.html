@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html leng="en">
+<head>
+    <meta charset="UTF-8">
+    <title>minh dep trai</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <h1>xin chao!</h1>
+    <div class="st">
+        <div id="tasks">{{test}}
+            <div>
+                <ol class="list-group">
+                    <li v-for="task in tasks" class="list-group-item">
+                        {{task.body}}
+                        <button @click="removeTask(task)"> &otimes; </button>
+                    </li>
+
+                </ol>
+                <br/>
+                <a href="https://www.facebook.com/elmiscor"><img width="200px" height="200px" src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/22519619_991484970993663_8844399995243409668_n.jpg?oh=f66fe98d6f6c881316e2cfada506449d&oe=5A985770" ></a>
+                <br/>
+                <br/>
+            </div>
+            <form @submit="addTask">
+                <div class="form-group"> 
+                    <input v-model="newTask" class="form-control" placeholder="lai con...">
+                </div>
+                <button class="btn btn-primary btn-lg" type="submit"> Thêm đặc điểm</button>
+            </form>
+            <pre>{{$data | json}}</pre>
+            {{tasks.length}}
+
+        </div>
+    </div>
+    <div class="container">
+        <article id="post" class="jumbotron" v-show="invisible">
+            <button type="submit" class="glyphicon glyphicon-remove pull-right" @click="invisible=false">
+                
+            </button>
+            <h3> Mặt Trời Của Em - Phương Ly, JustaTee </h3>
+            <p>
+                Mặt trời kia dù ở đâu <br>
+                Dù ngày trôi nhanh hay rất lâu <br>
+                Dù là mình xa cách nhau <br>
+                Ánh sáng ấy vẫn là như thế <br><br>
+
+                Vậy mà sau khi không có anh <br>
+                Đoạn đường nào em đi cũng vắng tanh <br>
+                Thời gian ơi xin hãy trôi nhanh để em được lại ở bên anh <br>
+                Đôi mình yêu nhau từ khi anh nói với em<br>
+            </p>
+            <button  type="button" class=" btn glyphicon glyphicon-heart" 
+            v-bind:class="{'btn-primary glyphicon-heart-empty' : liked}"
+            @click="dolike">
+                {{likesCount}}
+            </button>
+
+
+            <br>
+        <pre>
+            {{$data | json}}
+        </pre>
+            
+        </article>
+        
+        <div id="demo">
+            <input type="" name="" v-model="search" class="form-control">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <!-- <th>
+                            <a href="#" @click="sortBy('name')">NAME</a>
+
+                        </th>
+                        <th>
+                            <a href="#" @click="sortBy('age')" > AGE</a>
+                        </th> -->
+                        <th v-for="column in columns">
+                            <a href="#" @click="sortBy(column)">{{column}}</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="person in people | orderBy sortKey order | filterBy search ">
+                        <td>
+                            {{person.name}}
+                        </td>
+                        <td>
+                            {{person.age}}
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+            
+        </div>
+
+    </div>
+    
+    
+    <script  src="https://cdn.jsdelivr.net/vue/1.0.28/vue.min.js"></script>
+    <script  src="app.js"></script>
+</body>
+</html>

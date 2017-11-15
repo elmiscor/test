@@ -1,0 +1,8 @@
+li button{
+    float: right;
+}
+li button :hover{
+    font-weight: bold;
+    background: none;
+    color: red;
+};
